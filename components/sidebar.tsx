@@ -84,10 +84,8 @@ const Sidebar = () => {
 
   return (
     <div className="h-dvh sticky top-0 p-4 flex flex-col gap-4">
-      {/* Brand */}
       <div className="text-lg font-semibold">VP TODO</div>
 
-      {/* Profile placeholder  */}
       <div className="rounded-xl border border-border/60 p-3 flex flex-col gap-3">
         <div className="flex items-center gap-3">
           {session?.user?.image ?
@@ -120,7 +118,6 @@ const Sidebar = () => {
 
       <Separator />
 
-      {/* Overview */}
       <div className="space-y-2">
         <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide hover:bg-muted transition">
           Overview
@@ -140,14 +137,13 @@ const Sidebar = () => {
 
       <Separator />
 
-      {/* Filters */}
       <div className="space-y-2">
         <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
           Filters
         </div>
         <div className="space-y-1">
           {filters.map((filter) => {
-            const url = new URL(filter.href, 'http://dummy'); // parse safely
+            const url = new URL(filter.href, 'http://dummy');
             const filterStatus = url.searchParams.get('status');
             const filterView = url.searchParams.get('view');
 
@@ -174,7 +170,6 @@ const Sidebar = () => {
 
       <Separator />
 
-      {/* Categories */}
       <div className="space-y-2">
         <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
           Categories

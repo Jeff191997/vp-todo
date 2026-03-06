@@ -62,7 +62,6 @@ export function AddTaskButton() {
       });
 
       if (!res.ok) {
-        // read error message from server if provide
         const text = await res.text();
         setError(text || 'Failed to create task.');
         return;
@@ -97,7 +96,6 @@ export function AddTaskButton() {
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Title */}
           <div className="space-y-2">
             <Label htmlFor="title">Task Title *</Label>
             <Input
@@ -110,7 +108,6 @@ export function AddTaskButton() {
             />
           </div>
 
-          {/* Description */}
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
             <Textarea
@@ -123,7 +120,6 @@ export function AddTaskButton() {
             />
           </div>
 
-          {/* Category + Due date */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="category">Category</Label>
@@ -148,7 +144,6 @@ export function AddTaskButton() {
             </div>
           </div>
 
-          {/* Error */}
           {error && (
             <div className="text-sm text-red-500 border border-red-500/30 bg-red-500/10 rounded-lg p-2">
               {error}

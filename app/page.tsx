@@ -153,7 +153,6 @@ const HomePage = async ({ searchParams }: Props) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <div>
           <h1 className="text-3xl font-bold">{title}</h1>
@@ -169,7 +168,6 @@ const HomePage = async ({ searchParams }: Props) => {
         </div>
       </div>
 
-      {/* Summary */}
       {isOverview && (
         <div className="grid gap-4 md:grid-cols-4">
           <div className="rounded-xl border border-border/60 p-4">
@@ -194,7 +192,6 @@ const HomePage = async ({ searchParams }: Props) => {
         </div>
       )}
 
-      {/* Today's Task Session */}
       <div className="space-y-3">
         <h2 className="text-lg font-semibold">
           {isOverview ? "Today's Tasks" : 'Tasks'}

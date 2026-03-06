@@ -5,7 +5,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-// shadcn select
 import {
   Select,
   SelectContent,
@@ -98,7 +97,6 @@ export function TaskCard({ task }: TaskCardProps) {
   return (
     <div>
       <div className="rounded-xl border border-border/60 p-3 flex items-center justify-between gap-3">
-        {/* Left */}
         <div className="flex items-start gap-3">
           <Checkbox
             checked={completed}

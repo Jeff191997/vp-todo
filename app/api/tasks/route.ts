@@ -42,7 +42,6 @@ export async function POST(req: Request) {
       new Date(String(body.dueDate))
     : null;
 
-  // Optional: create/find a category by name for this user
   let categoryId: string | null = null;
   const categoryName = String(body.categoryName ?? '').trim();
 

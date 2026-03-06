@@ -22,23 +22,18 @@ export function TaskSearch() {
 
   const urlQ = searchParams.get('q') ?? '';
 
-  // local input state
   const [text, setText] = useState(urlQ);
 
-  // track whether the user is currently typing
   const isTypingRef = useRef(false);
 
-  // ✅ If URL changes from outside (sidebar/back), update input
   useEffect(() => {
     if (!isTypingRef.current && urlQ !== text) {
       setText(urlQ);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlQ]);
 
   const debounced = useDebouncedValue(text, 300);
 
-  // ✅ Update URL from input (debounced)
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
 
@@ -49,14 +44,12 @@ export function TaskSearch() {
     const nextQuery = params.toString();
     const currentQuery = searchParams.toString();
 
-    // avoid unnecessary navigation (causes re-renders)
     if (nextQuery !== currentQuery) {
       router.replace(`${pathname}${nextQuery ? `?${nextQuery}` : ''}`, {
         scroll: false,
       });
     }
 
-    // typing “session” ends once we've applied debounced value
     isTypingRef.current = false;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
