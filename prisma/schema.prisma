@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categories Category[]
+  tasksOwned Task[]         @relation("TaskOwner")
+  assigned   TaskAssignee[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tasks Task[]
+
+  @@unique([userId, name])
+}
+
+model Task {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  status      TaskStatus @default(PENDING)
+  dueAt       DateTime?
+  ownerId     String
+  categoryId  String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  owner     User           @relation("TaskOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  category  Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  assignees TaskAssignee[]
+
+  @@index([ownerId, status])
+  @@index([dueAt])
+}
+
+model TaskAssignee {
+  taskId  String
+  userId  String
+  addedAt DateTime @default(now())
+
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([taskId, userId])
+}
