@@ -8,7 +8,7 @@ https://vp-todo.vercel.app
 
 ## GitHub Repository
 
-[https://github.com/YOUR_GITHUB_USERNAME/vp-todo](https://github.com/Jeff191997/vp-todo)
+https://github.com/Jeff191997/vp-todo
 
 ---
 
